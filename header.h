@@ -4,9 +4,9 @@
 
 void menudujeu(){}
 //Choix Jouer ou quitter
-//Choix grille aléatoire ou manuel
+//Choix grille alÃ©atoire ou manuel
 //choix dimension grille
-//choix de générations
+//choix de gÃ©nÃ©rations
 
 
 bool nbAleatoire(double proba){}
@@ -33,7 +33,7 @@ public:
     void analysecellule(int x, int y);
 
 };//rajouter population
-//méthodes pour chaque itération(règles du jeu)
+//mÃ©thodes pour chaque itÃ©ration(rÃ¨gles du jeu)
 
 class bouton{
 private:
