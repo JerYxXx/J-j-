@@ -8,7 +8,6 @@ void menudujeu(){}
 //Choix Jouer ou quitter
 //Choix grille aléatoire ou manuel
 //choix dimension grille
-//choix de générations
 
 bool nbAleatoire(double proba){}
 //permettera une configuration "aléatoire", par contre comme c'est quelque chose qui va permettre de générer dans la grille, il y a moyen que la fonction sera à mettre directement dans la classe grille.
@@ -46,9 +45,13 @@ public:
 //affichage grille, initialisation grille
 class jeu{//la classe Jeu sera plus faite pour les annexes (revenir en arrière, les boutons?, etc) à ton besoin d'une classe pour cela ?
 private:
+int generation=0; 
 public:
     int population();//affiche nombre cellule vivante
     int iteration();//affiche iteration
+    int getGeneration() const {
+        return generation;
+    }
     //void analysecellule(int x, int y); Pareille tout ce fait dans la classe Grille je pense ?
 
 };//rajouter population
