@@ -50,7 +50,7 @@ int generation=0; //Compteur de génération
 public:
     int population();//affiche nombre cellule vivante
     int iteration();//affiche iteration, du coup pas mieux de le faire dans la classe grille ?
-    void affichage(); //affichera la dernière grille
+    void retour(); //affichera la dernière grille
     int getGeneration() const {
         return generation;
     }
