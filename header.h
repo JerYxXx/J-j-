@@ -11,7 +11,7 @@ void menudujeu(){}
 //choix de générations
 
 bool nbAleatoire(double proba){}
-//permettera une configuration "aléatoire"
+//permettera une configuration "aléatoire", par contre comme c'est quelque chose qui va permettre de générer dans la grille, il y a moyen que la fonction sera à mettre directement dans la classe grille.
 
 void sauvegarde(){}
 //Une fonction qui sauvegardera les tableaux dans d'aure tableau
@@ -40,7 +40,7 @@ public:
     }
     bool IsTrue(int x, int y);//Connaitre l'état d'une cellule
     void Etat(int x, int y, bool vivante);//Pour changer l'état de la cellule
-    int Scan(int x, int y); //Fonction pour scan tout autour de la cellule
+    int ScanCellule(int x, int y); //Fonction pour scanner tout autour de la cellule
     void affichage();
 };
 //affichage grille, initialisation grille
