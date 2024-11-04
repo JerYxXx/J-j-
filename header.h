@@ -43,19 +43,20 @@ public:
     void affichage();
 };
 //affichage grille, initialisation grille
-class jeu{//la classe Jeu sera plus faite pour les annexes (revenir en arrière, les boutons?, etc) à ton besoin d'une classe pour cela ?
+class jeu{//la classe Jeu sera plus faite pour les annexes (revenir en arrière, les boutons?, l'historique...) à ton besoin d'une classe pour cela ?
 private:
-int generation=0; 
+vector<grille> historique; //On va stocker dans un tableau les anciennes grilles (10max ?)
+int generation=0; //Compteur de génération
 public:
     int population();//affiche nombre cellule vivante
-    int iteration();//affiche iteration
+    int iteration();//affiche iteration, du coup pas mieux de le faire dans la classe grille ?
+    void affichage(); //affichera la dernière grille
     int getGeneration() const {
         return generation;
     }
     //void analysecellule(int x, int y); Pareille tout ce fait dans la classe Grille je pense ?
 
-};//rajouter population
-//méthodes pour chaque itération(règles du jeu)
+};
 
 class bouton{ //On va crée plusieurs bouton en SFML mais on n'y connait pas grand chose pour le moment. On verra plus tard.
 private:
