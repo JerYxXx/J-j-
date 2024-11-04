@@ -28,7 +28,7 @@ friend cellule operator+(const cellule&,const cellule&);
 friend cellule operator-(const cellule&,const cellule&);
 };*/
 
-//Il faut savoir que quand on initie la grille toute les 
+//Il faut savoir que quand on initie la grille toute les cellules sont mortes (false)
 class grille{
 private:
     int largeur, hauteur;
