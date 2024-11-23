@@ -9,8 +9,6 @@ void menudujeu(){}
 //Choix grille aléatoire ou manuel
 //choix dimension grille
 
-bool nbAleatoire(double proba){}
-//permettera une configuration "aléatoire", par contre comme c'est quelque chose qui va permettre de générer dans la grille, il y a moyen que la fonction sera à mettre directement dans la classe grille.
 
 void sauvegarde(){}
 //Une fonction qui sauvegardera les tableaux dans d'aure tableau
@@ -36,10 +34,11 @@ private:
 public:
     grille(int largeur,int hauteur) : largeur(largeur), hauteur(hauteur) { //Donc ce que j'ai fais en détails, 1 je crée un tableau(la largeur) d'un autre tableau(la hauteur) qui contient un bool. Je set les valeurs que le joueurs va renseigner plus tard et j'initialise tout les cellules en morte.
         cellules.resize(largeur, vector<bool>(hauteur, false)  );
-    }
-    bool IsTrue(int x, int y);//Connaitre l'état d'une cellule
-    void Etat(int x, int y, bool vivante);//Pour changer l'état de la cellule
-    int ScanCellule(int x, int y); //Fonction pour scanner tout autour de la cellule
+    
+    void configurationAleatoire(double proba);
+    bool connaitreEtat(int x, int y);//Connaitre l'état d'une cellule
+    void changeEtat(int x, int y, bool vivante);//Pour changer l'état de la cellule
+    int scanCellule(int x, int y); //Fonction pour scanner tout autour de la cellule
     void affichage();
 };
 //affichage grille, initialisation grille
@@ -62,5 +61,19 @@ class bouton{ //On va crée plusieurs bouton en SFML mais on n'y connait pas gra
 private:
 public:
 };
+
+void grille::configurationAleatoire(double proba){
+    for(int x=0; x<largeur; x++){
+        for(int y=0; y<hauteur; y++){
+        cellules[x][y]= ((double)rand()/RAND_MAX) < proba;}}}
+
+        
+
+int main() {
+    system("chcp 1252"); 
+    cout<< “Jeu de la vie”;
+    srand(time(0));
+    menuPrincipal(); 
+return 0; }
 
 #endif // HEADER_H_INCLUDED
