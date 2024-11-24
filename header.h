@@ -11,6 +11,7 @@ class grille{
 private:
     int largeur, hauteur;
     vector<vector<bool>> cellules;//Tableau vecteur d'un même vecteur soit 2 dimensions. Sinon on peut faire un tableau normale pour plus de transparence
+    vector<pair<int, int>> CellulesVivante;
 public:
     grille(int largeur,int hauteur) : largeur(largeur), hauteur(hauteur) { //Donc ce que j'ai fais en détails, 1 je crée un tableau(la largeur) d'un autre tableau(la hauteur) qui contient un bool. Je set les valeurs que le joueurs va renseigner plus tard et j'initialise tout les cellules en morte.
         cellules.resize(largeur, vector<bool>(hauteur, false)  );
