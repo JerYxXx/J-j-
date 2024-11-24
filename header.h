@@ -16,9 +16,9 @@ public:
         cellules.resize(largeur, vector<bool>(hauteur, false)  );
     
     void configurationAleatoire(double proba);
-    bool isTrue(int x, int y);//Connaitre l'état d'une cellule
-    void changeEtat(int x, int y, bool vivante);//Pour changer l'état de la cellule
-    int scanCellule(int x, int y); //Fonction pour scanner tout autour de la cellule
+    void isTrue(int x, int y);//Connaitre l'état d'une cellule
+    void changeEtat(int x, int y);//Pour changer l'état de la cellule
+    void scanCellule(int x, int y); //Fonction pour scanner tout autour de la cellule
     void affichage();
     int getLargeur() const{
         return largeur;}
