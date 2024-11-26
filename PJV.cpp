@@ -27,8 +27,9 @@ void grille::changeEtat(int x, int y) {
         grille[x][y] = false;
     } else grille[x][y] = true;
 }
+
 void grille::generationSuivante() {
-    std::vector<std::vector<bool>> nouvelleGrille = grille; // Crée une copie temporaire.
+    std::vector<std::pair<int, int>> changements; // Liste des cellules à changer.
 
     for (int x = 0; x < grille.size(); x++) {
         for (int y = 0; y < grille[0].size(); y++) {
@@ -45,16 +46,21 @@ void grille::generationSuivante() {
                 }
             }
 
-            // Appliquer les règles
-            if (grille[x][y]) { // Cellule vivante
-                nouvelleGrille[x][y] = (voisinsVivants == 2 || voisinsVivants == 3);
-            } else { // Cellule morte
-                nouvelleGrille[x][y] = (voisinsVivants == 3);
+            // Utilisation de ton code pour appliquer les règles
+            if (grille[x][y]) {
+                if (voisinsVivants != 2 && voisinsVivants != 3) {
+                    changements.push_back({x, y}); // Ajouter la cellule à modifier.
+                }
+            } else {
+                if (voisinsVivants == 3) {
+                    changements.push_back({x, y}); // Ajouter la cellule à modifier.
+                }
             }
         }
     }
 
-    // Remplacer l'ancienne grille par la nouvelle
-    grille = nouvelleGrille;
+    // Appliquer les changements (via `changeEtat`)
+    for (auto [x, y] : changements) {
+        changeEtat(x, y);
+    }
 }
-
