@@ -26,7 +26,7 @@ public:
     int getHauteur() const{
         return hauteur;}
     //Il manque la fontion la plus importante PTDR c'est celle qui renvoie la nouvelle grille de la génération suivante après avoir fait scan cellule
-    grille generationSuivante(){}
+    grille generationSuivante(){} //Jérôme s'en occupe
 };
 
 
