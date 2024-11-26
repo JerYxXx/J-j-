@@ -27,3 +27,10 @@ void grille::changeEtat(int x, int y) {
         grille[x][y] = false;
     } else grille[x][y] = true;
 }
+
+grille::generationSuivante(grille1) {
+ //on prend le tableau des cellules vivantes, si 2 autres cellules sont autour de cette cellules vivante elle reste en vie sinon elle meurt
+ //2 methodes on scan toute les cellules et on regarde si il y a au moins 3 cellules voisines vivante (le plus facile mais le plus de calcul)
+ // Sinon on prend dans le tableau des cellules vivantes, on regarde si 
+    
+}
