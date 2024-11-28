@@ -8,7 +8,7 @@
 using namespace std;
 
 
-// Fonction pour générer les coordonnées selon une suite, ne pas mettre dans le propgramme final, c'est chat gpt qui l'a fait pour moi (jusqua ligne 27)
+// Fonction pour générer les coordonnées selon une suite, ne pas mettre dans le propgramme final, c'est chat gpt qui l'a fait pour moi (jusqua ligne 29)
 vector<pair<int, int>> generateSequence(int step, int windowWidth, int windowHeight) {
     vector<pair<int, int>> coordinates;
 
