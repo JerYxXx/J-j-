@@ -29,6 +29,7 @@ public:
     grille generationSuivante(){} //Jérôme s'en occupe
 };*/
 
+//Code modifier
 class grille {
 private:
     int largeur, hauteur;
@@ -48,6 +49,8 @@ public:
 };
 
 
+//Ancien code 
+/*
 class jeu{
 private:
     vector<grille> historique; 
@@ -60,7 +63,20 @@ public:
     int getGeneration() const {
         return generation;}
 };
+*/
+//Code modifier
+class jeu {
+private:
+    vector<grille> historique;
+    int generation;
 
+public:
+    jeu();
+    void jouer(grille &grille1, int iterations);
+    int population(const grille &grille1) const;
+    void retour();
+    int getGeneration() const { return generation; }
+};
 
 void grille::configurationAleatoire(double proba){
     for(int x=0; x<largeur; x++){
@@ -68,21 +84,27 @@ void grille::configurationAleatoire(double proba){
         cellules[x][y]= ((double)rand()/RAND_MAX) < proba;}}
 }
 
-void jeu::jouer(grille &grille1, iterations){
-    for(int i=0; i<iterations; i++){
-        cout<< "Génération : "<< generation<< endl;
-    grille1.affichage();
-    historique.push_back(grille1);
-    grille1= grille1.generationSuivante();
-    generation++;
+void jeu::jouer(grille &grille1, int iterations) {
+    for (int i = 0; i < iterations; i++) {
+        cout << "Génération : " << generation << endl;
+        grille1.affichage();
+        historique.push_back(grille1);
+        grille1 = grille1.generationsuivante();
+        generation++;
+        cout << endl;
+    }
+}
 
-int jeu::population( grille &grille1){
-    int nb_vivantes=0;
-    for(int x=0; x<grille1.getLargeur; x++){
-        for(int y=0; y<grille1.getHauteur; y++){
-        if (grille1.isTrue(x, y)){
-            nb_vivantes++;}
-        }}
+int jeu::population(const grille &grille1) const {
+    int nbVivantes = 0;
+    for (int x = 0; x < grille1.getLargeur(); x++) {
+        for (int y = 0; y < grille1.getHauteur(); y++) {
+            if (grille1.isTrue(x, y)) {
+                nbVivantes++;
+            }
+        }
+    }
+    return nbVivantes;
 }
 
 void jeu::retour(){ //chatgpt m'a dit pour.empty et .back, vous me direz si vous savez faire avec ce qu'on a vu en cours
