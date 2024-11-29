@@ -38,7 +38,7 @@ private:
 public:
     grille(int largeur, int hauteur);
     void configurationAleatoire(double proba);
-    void importerDepuisFichier(const string &nomFichier);
+    void importerDepuisFichier(const string &nomFichier); //Parti à finir
     bool isTrue(int x, int y) const;
     void changeEtat(int x, int y);
     int scanCellule(int x, int y) const; // Compte les voisins vivants
@@ -77,51 +77,6 @@ public:
     void retour();
     int getGeneration() const { return generation; }
 };
-
-void grille::configurationAleatoire(double proba){
-    for(int x=0; x<largeur; x++){
-        for(int y=0; y<hauteur; y++){
-        cellules[x][y]= ((double)rand()/RAND_MAX) < proba;}}
-}
-
-void jeu::jouer(grille &grille1, int iterations) {
-    for (int i = 0; i < iterations; i++) {
-        cout << "Génération : " << generation << endl;
-        grille1.affichage();
-        historique.push_back(grille1);
-        grille1 = grille1.generationsuivante();
-        generation++;
-        cout << endl;
-    }
-}
-
-int jeu::population(const grille &grille1) const {
-    int nbVivantes = 0;
-    for (int x = 0; x < grille1.getLargeur(); x++) {
-        for (int y = 0; y < grille1.getHauteur(); y++) {
-            if (grille1.isTrue(x, y)) {
-                nbVivantes++;
-            }
-        }
-    }
-    return nbVivantes;
-}
-
-void jeu::retour(){ //chatgpt m'a dit pour.empty et .back, vous me direz si vous savez faire avec ce qu'on a vu en cours
-    if(!historique.empty()){
-    cout<<"Grille précédente : ";
-    historique.back().affichage();}
-    else {
-    cout<<"Pas de grille précédente";}}
-
-void menuPrincipal(){}
-//Choix Jouer ou quitter
-//Choix grille aléatoire ou manuel
-//choix dimension grille
-//appel grille.configurationAleatoire
-//appel jeu.jouer
-
-void sauvegarde(){}//Une fonction qui sauvegardera les tableaux dans d'autre tableau (//Pas dans un fichier???????)
 
 
 int main() {
