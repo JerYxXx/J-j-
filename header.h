@@ -6,8 +6,8 @@
 #include <ctime>
 
 using namespace std;
-
-class grille{
+//Ancienne Grille
+/*class grille{
 private:
     int largeur, hauteur;
     vector<vector<bool>> cellules;//Tableau vecteur d'un même vecteur soit 2 dimensions. Sinon on peut faire un tableau normale pour plus de transparence
@@ -27,8 +27,25 @@ public:
         return hauteur;}
     //Il manque la fontion la plus importante PTDR c'est celle qui renvoie la nouvelle grille de la génération suivante après avoir fait scan cellule
     grille generationSuivante(){} //Jérôme s'en occupe
-};
+};*/
 
+class grille {
+private:
+    int largeur, hauteur;
+    vector<vector<bool>> cellules;
+
+public:
+    grille(int largeur, int hauteur);
+    void configurationAleatoire(double proba);
+    void importerDepuisFichier(const string &nomFichier);
+    bool isTrue(int x, int y) const;
+    void changeEtat(int x, int y);
+    int scanCellule(int x, int y) const; // Compte les voisins vivants
+    void affichage() const;
+    grille generationsuivante() ;
+    int getLargeur() const { return largeur; }
+    int getHauteur() const { return hauteur; }
+};
 
 
 class jeu{
