@@ -23,44 +23,42 @@
 
 //Fonction pour changer l'etat d'une cellule, je pense que c'est dans cette fonction qu'on peut rajouter les règles du jeu, j'aimerais en discuter avec vous avant de le faire.
 void grille::changeEtat(int x, int y) {
-    if (grille[x][y]) {
-        grille[x][y] = false;
-    } else grille[x][y] = true;
+    if (cellules[x][y]) {
+        cellules[x][y] = false;
+    } else cellules[x][y] = true;
 }
 
-void grille::generationSuivante() {
-    std::vector<std::pair<int, int>> changements; // Liste des cellules à changer.
+grille grille::generationSuivante() {
+    grille nouvelleGrille(largeur, hauteur); // Nouvelle grille qui sera retournée
 
-    for (int x = 0; x < grille.size(); x++) {
-        for (int y = 0; y < grille[0].size(); y++) {
+    // Parcourir la grille actuelle
+    for (int x = 0; x < cellules.size(); x++) {
+        for (int y = 0; y < cellules[0].size(); y++) {
             int voisinsVivants = 0;
 
             // Parcours des voisins
             for (int X = x - 1; X <= x + 1; X++) {
                 for (int Y = y - 1; Y <= y + 1; Y++) {
-                    if (X >= 0 && X < grille.size() && Y >= 0 && Y < grille[0].size() && !(X == x && Y == y)) {
-                        if (grille[X][Y]) {
+                    if (X >= 0 && X < cellules.size() && Y >= 0 && Y < cellules[0].size() && !(X == x && Y == y)) {
+                        if (cellules[X][Y]) { // Vérifie si la cellule est vivante
                             voisinsVivants++;
                         }
                     }
                 }
             }
 
-            // Utilisation de ton code pour appliquer les règles
-            if (grille[x][y]) {
-                if (voisinsVivants != 2 && voisinsVivants != 3) {
-                    changements.push_back({x, y}); // Ajouter la cellule à modifier.
+            // Application des règles du jeu
+            if (cellules[x][y]) { // Si la cellule est vivante
+                if (voisinsVivants == 2 || voisinsVivants == 3) {
+                    nouvelleGrille.cellules[x][y] = true; // La cellule reste vivante
                 }
-            } else {
+            } else { // Si la cellule est morte
                 if (voisinsVivants == 3) {
-                    changements.push_back({x, y}); // Ajouter la cellule à modifier.
+                    nouvelleGrille.cellules[x][y] = true; // La cellule devient vivante
                 }
             }
         }
     }
 
-    // Appliquer les changements (via `changeEtat`)
-    for (auto [x, y] : changements) {
-        changeEtat(x, y);
-    }
+    return nouvelleGrille;
 }
