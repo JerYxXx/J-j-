@@ -22,13 +22,22 @@
 }*/
 
 //Fonction pour changer l'etat d'une cellule, je pense que c'est dans cette fonction qu'on peut rajouter les règles du jeu, j'aimerais en discuter avec vous avant de le faire.
-void grille::changeEtat(int x, int y) {
-    if (cellules[x][y]) {
-        cellules[x][y] = false;
-    } else cellules[x][y] = true;
-}
 
-grille grille::generationSuivante() {
+//*************************CPP GRILLE*******************************
+#include "grille.h"
+#include <fstream>
+#include <sstream>
+#include <vector>
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+//Travail Jérôme
+grille::grille(int largeur, int hauteur)
+    : largeur(largeur), hauteur(hauteur) {
+    cellules.resize(largeur, vector<bool>(hauteur, false));
+}
+grille grille::generationsuivante() {
     grille nouvelleGrille(largeur, hauteur); // Nouvelle grille qui sera retournée
 
     // Parcourir la grille actuelle
@@ -61,4 +70,71 @@ grille grille::generationSuivante() {
     }
 
     return nouvelleGrille;
+}
+//Travail Elsa
+void grille::configurationAleatoire(double proba) {
+    for (int x = 0; x < largeur; x++) {
+        for (int y = 0; y < hauteur; y++) {
+            cellules[x][y] = ((double)rand() / RAND_MAX) < proba;
+        }
+    }
+}
+
+bool grille::isTrue(int x, int y) const {
+    return cellules[x][y];
+}
+
+void grille::changeEtat(int x, int y) {
+    if (cellules[x][y]) {
+        cellules[x][y] = false;
+    } else cellules[x][y] = true;
+}
+
+void grille::affichage() const {
+    for (int y = 0; y < hauteur; y++) {
+        for (int x = 0; x < largeur; x++) {
+            cout << (cellules[x][y] ? 'O' : '.');
+        }
+        cout << endl;
+    }
+}
+
+//************************CPP JEU*************************
+//Travail Elsa
+#include "jeu.h"
+#include <iostream>
+using namespace std;
+
+jeu::jeu() : generation(0) {}
+
+void jeu::jouer(grille &grille1, int iterations) {
+    for (int i = 0; i < iterations; i++) {
+        cout << "Génération : " << generation << endl;
+        grille1.affichage();
+        historique.push_back(grille1);
+        grille1 = grille1.generationsuivante();
+        generation++;
+        cout << endl;
+    }
+}
+
+int jeu::population(const grille &grille1) const {
+    int nbVivantes = 0;
+    for (int x = 0; x < grille1.getLargeur(); x++) {
+        for (int y = 0; y < grille1.getHauteur(); y++) {
+            if (grille1.isTrue(x, y)) {
+                nbVivantes++;
+            }
+        }
+    }
+    return nbVivantes;
+}
+
+void jeu::retour() {
+    if (!historique.empty()) {
+        cout << "Grille précédente : " << endl;
+        historique.back().affichage();
+    } else {
+        cout << "Pas de grille précédente disponible." << endl;
+    }
 }
